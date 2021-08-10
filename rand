@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <conio.h>
+#include <time.h>
+const int students = 20;
+int score()
+{
+	int i, j, k;
+	double average, total;
+	double kor[students], eng[students], mat[students];
+	srand(time(NULL));
+	for (i = 0; i < students; i++)
+	{
+		kor[i] = (double)((rand() % 1000) + 1) / 10.0; // rand : 난수 발생기 (정수)  0 ~ 100.0   1 ~ 1000 0.1 ~ 100.0
+		eng[i] = (double)((rand() % 1000) + 1) / 10.0; // rand : 난수 발생기 (정수)  0 ~ 100.0   1 ~ 1000 0.1 ~ 100.0
+		mat[i] = (double)((rand() % 1000) + 1) / 10.0; // rand : 난수 발생기 (정수)  0 ~ 100.0   1 ~ 1000 0.1 ~ 100.0
+	}
+	//for (i = 0; i < students; i++)
+	//{
+	//	printf("%.1f  %.1f   %.1f\n", kor[i], eng[i], mat[i]);
+	//}
+	printf("코스타 IoT 국어 점수 현황\n==============================\n\n개인점수 리스트:\n");
+	total = 0.;
+	for (i = 0; i < students; i++)
+	{
+		printf("%7.1f\n", kor[i]); // %7.1f  :  실수 출력의 전체 자리수를 7자리, 소수점 이하 1자리
+		total += kor[i];
+	}
+	average = total / students;
+	
+	printf("총점 : %7.1f\n", total);
+	printf("평균 : %7.1f\n", average);
+	return 0;
+}
