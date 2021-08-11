@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <conio.h>
+
+void Swap(void* a, void* b, int op)
+{
+	if (op == 1)	// char
+	{
+		char c = *(char*)a;
+		*(char*)a = *(char*)b;
+		*(char*)b = c;
+	}
+	if (op == 4)	// byte 수로 구분 // int, float, string
+	{
+		int c = *(int*)a;
+		*(int*)a = *(int*)b;
+		*(int*)b = c;
+	}
+	if (op == 8)	// double
+	{
+		double c = *(double*)a;
+		*(double*)a = *(double*)b;
+		*(double*)b = c;
+	}
+}
+const int nArr = 7;
+int kor[] = { 82, 93, 71, 69, 78, 84, 75 };
+int eng[] = { 76, 91, 67, 73, 86, 63, 83 };
+double tot[nArr];
+char name[] = "ABCDEFG";
+const char* name2[] = { "일남", "이남", "삼남", "사남", "오남", "육남", "칠남" };
+
+void sortEx(double* a, int n)
+{
+	int i, j, k;
+	for (i = 0; i < n; i++)
+	{
+		for (j = i; j < n; j++)
+		{
+			if (a[i] < a[j])
+			{
+				Swap(a + i, a + j, 8);
+				Swap(kor + i, kor + j, 4);
+				Swap(eng + i, eng + j, 4);
+				Swap(name + i, name + j, 1);
+				Swap(name2 + i, name2 + j, 4);
+			}
+		}
+	}
+}
+void sol()
+{
+	double f_kor = 0.3, f_eng = 0.7;
+	int i;
+
+	for (i = 0; i < nArr; i++)
+	{
+		tot[i] = kor[i] * f_kor + eng[i] * f_eng;
+	}
+	printf("Original :\n");
+	printf("이름 : "); for (i = 0; i < nArr; i++) printf("%7c	", name[i]); printf("\n\n");
+	printf("이름2 : "); for (i = 0; i < nArr; i++) printf("%7s	", name2[i]); printf("\n\n");
+	printf("국어 : "); for (i = 0; i < nArr; i++) printf("%7d	", kor[i]); printf("\n\n");
+	printf("영어 : "); for (i = 0; i < nArr; i++) printf("%7d	", eng[i]); printf("\n\n");
+	printf("합계 : "); for (i = 0; i < nArr; i++) printf("%7.2f	", tot[i]); printf("\n\n");
+
+	sortEx(tot, nArr);
+
+	printf("Sored :\n");
+	printf("이름 : "); for (i = 0; i < nArr; i++) printf("%7c	", name[i]); printf("\n\n");
+	printf("이름2 : "); for (i = 0; i < nArr; i++) printf("%7s	", name2[i]); printf("\n\n");
+	printf("국어 : "); for (i = 0; i < nArr; i++) printf("%7d	", kor[i]); printf("\n\n");
+	printf("영어 : "); for (i = 0; i < nArr; i++) printf("%7d	", eng[i]); printf("\n\n");
+	printf("합계 : "); for (i = 0; i < nArr; i++) printf("%7.2f	", tot[i]); printf("\n\n");
+}
+void VoidPrint(void* p, int i)
+{
+	if (i == 1)
+	{
+		char* cp = (char*)p;
+		printf("%c\n", *cp);
+	}
+	if (i == 2)
+	{
+		int* ip = (int*)p;
+		printf("%d\n", *ip);
+	}
+	if (i == 3)
+	{
+		double* dp = (double*)p;
+		printf("%f\n", *dp);
+	}
+}
+
+void VoidTest()
+{
+	int n = 10;
+	double a = 1.414;
+	char c = 'z';
+
+	void* vp;
+	VoidPrint(&c, 1);
+	VoidPrint(&n, 2);
+	VoidPrint(&a, 3);
+}
+int main()
+{
+
+	//VoidTest();
+	sol();
+}
