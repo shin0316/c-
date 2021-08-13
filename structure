@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <conio.h>
+#include <time.h>
+#include <string.h>
+
+//struct student
+//{
+//	int kor;
+//	int eng;
+//	char name[10];
+//};
+typedef struct {
+	int kor;
+	int eng;
+	char name[7];
+} STU;
+
+void Swap(void* a, void* b, int op)
+{
+	if (op == 1)	// char
+	{
+		char c = *(char*)a;
+		*(char*)a = *(char*)b;
+		*(char*)b = c;
+	}
+	if (op == 4)	// byte 수로 구분 // int, float, string
+	{
+		int c = *(int*)a;
+		*(int*)a = *(int*)b;
+		*(int*)b = c;
+	}
+	if (op == 8)	// double
+	{
+		double c = *(double*)a;
+		*(double*)a = *(double*)b;
+		*(double*)b = c;
+	}
+	if (op == 18)	// STU
+	{
+		STU c = *(STU*)a;
+		*(STU*)a = *(STU*)b;
+		*(STU*)b = c;
+	}
+}
+
+const int nArr = 7;
+int kor[] = { 82, 93, 71, 69, 78, 84, 75 };
+int eng[] = { 76, 91, 67, 73, 86, 63, 83 };
+double tot[nArr];
+const char* name[] = { "일남", "이남", "삼남", "사남", "오남", "육남", "칠남" };
+STU student[nArr];
+
+void sortEx(double* a, int n)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = i; j < n; j++)
+		{
+			if (a[i] < a[j])
+			{
+				Swap(a + i, a + j, 8);
+				Swap(student + i, student + j, 18);
+				//Swap(kor + i, kor + j, 4);
+				//Swap(eng + i, eng + j, 4);
+				//Swap(name + i, name + j, 1);
+				//Swap(name2 + i, name2 + j, 4);
+			}
+		}
+	}
+}
+
+void solNEW()
+{
+	double f_kor = 0.3, f_eng = 0.7;
+	int i;
+
+	for (i = 0; i < nArr; i++)
+	{
+		student[i].kor = kor[i];
+		student[i].eng = eng[i];
+		strcpy(student[i].name, name[i]);
+
+		tot[i] = student[i].kor * f_kor + student[i].eng * f_eng;
+	}
+	printf("Original :\n");
+	printf("이름 : "); for (i = 0; i < nArr; i++) printf("%7s	", student[i].name); printf("\n\n");
+	printf("국어 : "); for (i = 0; i < nArr; i++) printf("%7d	", student[i].kor); printf("\n\n");
+	printf("영어 : "); for (i = 0; i < nArr; i++) printf("%7d	", student[i].eng); printf("\n\n");
+	printf("합계 : "); for (i = 0; i < nArr; i++) printf("%7.2f	", tot[i]); printf("\n\n");
+
+	sortEx(tot, nArr);
+
+	printf("Sored :\n");
+	printf("이름 : "); for (i = 0; i < nArr; i++) printf("%7s	", student[i].name); printf("\n\n");
+	printf("국어 : "); for (i = 0; i < nArr; i++) printf("%7d	", student[i].kor); printf("\n\n");
+	printf("영어 : "); for (i = 0; i < nArr; i++) printf("%7d	", student[i].eng); printf("\n\n");
+	printf("합계 : "); for (i = 0; i < nArr; i++) printf("%7.2f	", tot[i]); printf("\n\n");
+}
+
+int main()
+{
+	solNEW();
+}
