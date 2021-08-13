@@ -1,0 +1,19 @@
+#include <stdio.h>
+void StreamTest()
+{
+	char buf[1024];
+	FILE* f = fopen("C:\\Users\\KOSTA\\aa", "r"); // 초기화 // 만약 파일이 존재하지 않으면 -1 반환
+	if (f != NULL)
+	{
+		while (1)
+		{
+			if(fgets(buf, 1024, f) == NULL) break;
+			fputs(buf, stdout);
+		}
+	}
+	else	printf("입력 파일이 존재하지 않습니다\n");
+}
+int main()
+{
+	StreamTest();
+}
