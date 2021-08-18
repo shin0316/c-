@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <conio.h>
+
+int main()
+{
+	while (1)
+	{
+		int k;
+		scanf("%d", &k);
+
+		/*if (k == 1)
+		{
+			printf(">%d : one\n", k);
+		}
+		else if (k == 2)
+		{
+			printf(">%d : two\n", k);
+		}
+		else if (k == 3)
+		{
+			printf(">%d : three\n", k);
+		}
+		else if (k == 4)
+		{
+			printf(">%d : four\n", k);
+		}
+		else if (k == 5)
+		{
+			printf(">%d : five\n", k);
+		}
+		else if (k == 6)
+		{
+			printf(">%d : six\n", k);
+		}
+		else if (k == 7)
+		{
+			printf(">%d : seven\n", k);
+		}
+		else if (k == 8)
+		{
+			printf(">%d : eight\n", k);
+		}
+		else if (k == 9)
+		{
+			printf(">%d : nine\n", k);
+		}
+		else
+		{
+			break;
+		}*/
+		switch (k)
+		{
+		case 1: printf(">%d : one\n", k);	break;
+		case 2: printf(">%d : two\n", k);	break;
+		case 3: printf(">%d : three\n", k);	break;
+		case 4: printf(">%d : four\n", k);	break;
+		case 5: printf(">%d : five\n", k);	break;
+		case 6: printf(">%d : six\n", k);	break;
+		case 7: printf(">%d : seven\n", k);	break;
+		case 8: printf(">%d : eight\n", k);	break;
+		case 9: printf(">%d : nine\n", k);	break;
+		default: break;
+		}
+		if (k == 0) break;
+	}
+	printf("프로그램을 종료하려면 아무 키나 누르세요...");
+	getch();
+}
